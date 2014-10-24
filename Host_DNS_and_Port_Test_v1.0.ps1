@@ -9,18 +9,18 @@ Description:         Script performs a DNS and set of Port Checks based upon a l
 
 
 Changes:             10.22.2014 - R. Irujo
-		                 - Added Documentation
+		    - Added Documentation
 
 
 Additional Notes:    To test multiple ports, provide values separated by commas. i.e. - 443,3389
 
                      The 'Hosts.txt' file that is read into the Script must be have 'Hostname' as the first
-		                 entry in the list. An Example list is shown below.
+		     entry in the list. An Example list is shown below.
 					 
-		                 Hostname
-		                 TESTSRV101
-		                 TESTSRV102
-		                 TESTSRV103
+		     Hostname
+		     TESTSRV101
+		     TESTSRV102
+		     TESTSRV103
 					 
 					 
 Standard Syntax:     ./Host_DNS_and_Port_Test_v1.0.ps1
