@@ -2,14 +2,14 @@
 
 Author(s):           Ryan Irujo
 Inception:           10.21.2014
-Last Modified:       10.22.2014
+Last Modified:	     10.22.2014
 
 Description:         Script performs a DNS and set of Port Checks based upon a list of Hosts provided in a text file
                      named 'Hosts.txt' Results are returned in CSV Format.
 
 
 Changes:             10.22.2014 - R. Irujo
-		    - Added Documentation
+		     - Added Documentation
 
 
 Additional Notes:    To test multiple ports, provide values separated by commas. i.e. - 443,3389
@@ -17,7 +17,7 @@ Additional Notes:    To test multiple ports, provide values separated by commas.
                      The 'Hosts.txt' file that is read into the Script must be have 'Hostname' as the first
 		     entry in the list. An Example list is shown below.
 					 
-		     Hostname
+	             Hostname
 		     TESTSRV101
 		     TESTSRV102
 		     TESTSRV103
@@ -55,10 +55,13 @@ Foreach ($Entry in $HostNames)
 {
 
     $HostResult = New-Object -TypeName PSObject
-    $HostResult | Add-Member -MemberType NoteProperty -Name HostName -Value ""
+	$HostResult | Add-Member -MemberType NoteProperty -Name Source -Value ""
+    $HostResult | Add-Member -MemberType NoteProperty -Name Destination -Value ""
     $HostResult | Add-Member -MemberType NoteProperty -Name DNSResultHostName -Value ""
-
-	$HostResult.HostName = $Entry.Hostname
+	
+	
+	$HostResult.Source = [System.Net.Dns]::GetHostByName($env:COMPUTERNAME).HostName
+	$HostResult.Destination = $Entry.Hostname
 
 	# Checking if Host is Resolvable via DNS.
     try 
@@ -101,6 +104,6 @@ $TimeStamp = Get-Date -Format "yyyy.MM.dd-HH.mm.ss"
 $HostResults | Export-Csv -Path ".\Host_DNS_and_Port_Check_Results_$TimeStamp.csv" -NoTypeInformation
 
 # Sending Final Results to Console as well.
-$HostResults | FT
+$HostResults | FT -AutoSize
 
 
