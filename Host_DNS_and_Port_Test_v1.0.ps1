@@ -57,7 +57,7 @@ Foreach ($Entry in $HostNames)
     $HostResult = New-Object -TypeName PSObject
 	$HostResult | Add-Member -MemberType NoteProperty -Name Source -Value ""
     $HostResult | Add-Member -MemberType NoteProperty -Name Destination -Value ""
-    $HostResult | Add-Member -MemberType NoteProperty -Name DNSResultHostName -Value ""
+    $HostResult | Add-Member -MemberType NoteProperty -Name DNSResultIPAddress -Value ""
 	
 	
 	$HostResult.Source = [System.Net.Dns]::GetHostByName($env:COMPUTERNAME).HostName
@@ -67,11 +67,11 @@ Foreach ($Entry in $HostNames)
     try 
 	{
 		$DNS_Entry = [System.Net.DNS]::GetHostByName("$($Entry.Hostname)")
-		$HostResult.DNSResultHostName = "$($DNS_Entry.AddressList.IPAddressToString)"
+		$HostResult.DNSResultIPAddress = "$($DNS_Entry.AddressList.IPAddressToString)"
 	}
 	catch [System.Exception] 
 	{
-		$HostResult.DNSResultHostName = "$_"
+		$HostResult.DNSResultIPAddress = "$_"
 	}
 
 	# Checking to see if the Port(s) are open and available.
