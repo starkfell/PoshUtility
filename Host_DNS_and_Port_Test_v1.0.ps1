@@ -97,10 +97,10 @@ Foreach ($Entry in $HostNames)
 	$HostResults += $HostResult
 }
 
-# Creating Timestamp for the 'SCOMLinuxAgentInstallResults.csv' File.
+# Creating Timestamp for the Output CSV File.
 $TimeStamp = Get-Date -Format "yyyy.MM.dd-HH.mm.ss"
 
-# Exporting the data in the '$HostResults' Array out to the 'SCOMLinuxAgentInstallResults.csv' File.
+# Exporting the data in the '$HostResults' Array out to the 'Host_DNS_and_Port_Check_Results_<TIMESTAMP>.csv' File.
 $HostResults | Export-Csv -Path ".\Host_DNS_and_Port_Check_Results_$TimeStamp.csv" -NoTypeInformation
 
 # Sending Final Results to Console as well.
