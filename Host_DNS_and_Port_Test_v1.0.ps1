@@ -55,7 +55,7 @@ Foreach ($Entry in $HostNames)
 {
 
     $HostResult = New-Object -TypeName PSObject
-	$HostResult | Add-Member -MemberType NoteProperty -Name Source -Value ""
+    $HostResult | Add-Member -MemberType NoteProperty -Name Source -Value ""
     $HostResult | Add-Member -MemberType NoteProperty -Name Destination -Value ""
     $HostResult | Add-Member -MemberType NoteProperty -Name DNSResultIPAddress -Value ""
 	
